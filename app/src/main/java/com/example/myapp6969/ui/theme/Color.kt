@@ -17,6 +17,8 @@ val myBlack = Color(0xFF4E4949)
 
 val myGrey = Color(0xFFAFAAAA)
 
+val myBlue = Color(0xFF2c3e50)
+
 val heroGradient1 = listOf(
     Color(0xFF2c3e50),
     Color(0xFF3498db),
