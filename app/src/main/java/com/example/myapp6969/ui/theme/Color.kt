@@ -28,12 +28,18 @@ val heroGradient2 = listOf(
     Color(0xFF000000),
     Color(0xFF434343),
 )
-
+val myGreen = Color(0xFF27571B)
 val heroGradient3 = listOf(
     Color(0xFF061700),
-    Color(0xFF52c234),
+    Color(0xFF27571B),
 )
 val heroGradient4 = listOf(
     Color(0xFF392d69),
     Color(0xFFb57bee),
+)
+
+val heroGradient5 = listOf(
+    Color(0xFFeaeaea),
+    Color(0xFFdbdbdb),
+    Color(0xFFf2f2f2),
 )

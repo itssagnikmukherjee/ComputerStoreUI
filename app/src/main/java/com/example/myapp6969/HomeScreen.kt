@@ -23,7 +23,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Button
@@ -62,9 +64,11 @@ import com.example.myapp6969.ui.theme.heroGradient1
 import com.example.myapp6969.ui.theme.heroGradient2
 import com.example.myapp6969.ui.theme.heroGradient3
 import com.example.myapp6969.ui.theme.heroGradient4
+import com.example.myapp6969.ui.theme.heroGradient5
 import com.example.myapp6969.ui.theme.mulishFontFamily
 import com.example.myapp6969.ui.theme.myBlack
 import com.example.myapp6969.ui.theme.myBlue
+import com.example.myapp6969.ui.theme.myGreen
 import com.example.myapp6969.ui.theme.myGrey
 import com.example.myapp6969.ui.theme.myPurple
 import com.example.myapp6969.ui.theme.myWhite
@@ -72,7 +76,8 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(){
-    Column {
+    Column (
+    ){
             SearchSection()
             HeroSection()
             CategorySection()
@@ -375,11 +380,12 @@ fun ExclusiveSection() {
         }
 
         val itemList = listOf(
-            ItemDetails("Zebronics Keyboard","800","700",R.drawable.gmonitor),
-            ItemDetails("Redgear Mouse","800","700",R.drawable.gpu),
-            ItemDetails("Cosmic Byte CB GK 16","800","700",R.drawable.gpu),
-            ItemDetails("RGB Monitors","800","700",R.drawable.gpu),
+            ItemDetails("Zebronics Keyboard","₹800","₹700",R.drawable.keyboard),
+            ItemDetails("Redgear Mouse","₹800","₹700",R.drawable.mouse),
+            ItemDetails("Cosmic Byte","₹800","₹700",R.drawable.headphone),
+            ItemDetails("RGB Monitors","₹800","₹700",R.drawable.joystick_img),
         )
+
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -387,7 +393,7 @@ fun ExclusiveSection() {
 
         ) {
             items(itemList.size){
-                MyCard(item = itemList[it])
+                MyCard(item = itemList[it], bgColor = Brush.linearGradient(heroGradient5))
             }
         }
     }
@@ -395,12 +401,12 @@ fun ExclusiveSection() {
 
 
 @Composable
-fun MyCard(item: ItemDetails) {
+fun MyCard(item: ItemDetails, bgColor: Brush) {
     Card(
         modifier = Modifier
             .padding(10.dp)
             .width(150.dp)
-            .height(220.dp),
+            .height(230.dp),
         colors = CardDefaults.cardColors(Color.Transparent)
     ) {
         Box(
@@ -413,7 +419,6 @@ fun MyCard(item: ItemDetails) {
                 modifier = Modifier
                     .padding(start = 20.dp, bottom = 30.dp)
                     .align(Alignment.TopCenter)
-                    .offset(y = (0).dp)
                     .zIndex(1f),
                 contentScale = ContentScale.Fit
             )
@@ -421,7 +426,8 @@ fun MyCard(item: ItemDetails) {
             // Card content
             Column(
                 modifier = Modifier
-                    .background(Color.LightGray, RoundedCornerShape(20.dp)).fillMaxHeight(0.8f),
+                    .background(brush = bgColor, RoundedCornerShape(20.dp))
+                    .fillMaxHeight(0.8f),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Box(
@@ -453,14 +459,14 @@ fun MyCard(item: ItemDetails) {
                                 text = item.price,
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = myBlack,
+                                color = myGreen,
                                 fontFamily = mulishFontFamily
                             )
                             Text(
                                 text = item.discountPrice,
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = myBlack,
+                                color = myBlue,
                                 textAlign = TextAlign.Right,
                                 textDecoration = TextDecoration.LineThrough,
                                 fontFamily = mulishFontFamily
